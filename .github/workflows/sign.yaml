@@ -6,8 +6,16 @@ on:
   workflow_dispatch:
 
 jobs:
-  runs:
-    using: 'docker'
-    image: 'Dockerfile'
-    args:
-      - ${{ secrets.privateKey }}
+  sign:
+    runs-on: ubuntu-latest
+    name: Sign ffmuc manifest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v3
+    - name: Build docker images
+      run: docker build -t local < Dockerfile
+    - name: Run Sign
+      run: docker run -it -v local ${{ secrets.privateKey }
+
+
+
