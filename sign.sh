@@ -30,6 +30,10 @@ echo $secret > secret
 publickey=$(ecdsakeygen -p < secret)
 echo $publickey > publickey
 
+echo "$(print_branch_separator "Public-Key")"
+echo $publickey
+echo "$(print_branch_separator)" 
+
 for branch in $branches
 do
     wget "https://firmware.ffmuc.net/$branch/sysupgrade/$branch.manifest" >/dev/null 2>&1
