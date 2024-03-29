@@ -15,7 +15,7 @@ jobs:
     - name: Build docker images
       run: docker build -t local .
     - name: Run Sign
-      run: docker run -it -v local ${{ secrets.privateKey }}
+      run: docker run -t -v local ${{ secrets.privateKey }}
 
 
 
