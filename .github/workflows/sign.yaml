@@ -1,0 +1,8 @@
+# sign.yml
+name: 'sign manifest'
+description: 'sign ffmuc manifest'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ secrets.privateKey }}
