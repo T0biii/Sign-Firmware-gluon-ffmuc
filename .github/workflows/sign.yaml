@@ -1,9 +1,9 @@
 # sign.yml
 name: 'sign manifest'
-description: 'sign ffmuc manifest'
 
 on:
   workflow_dispatch:
+  push:
 
 jobs:
   sign:
