@@ -13,7 +13,7 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v3
     - name: Build docker images
-      run: docker build -t local < Dockerfile
+      run: docker build -t local .
     - name: Run Sign
       run: docker run -it -v local ${{ secrets.privateKey }}
 
