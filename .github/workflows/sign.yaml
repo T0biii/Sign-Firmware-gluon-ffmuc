@@ -4,6 +4,9 @@ name: 'sign manifest'
 on:
   workflow_dispatch:
   push:
+    paths-ignore:
+      - '**.md'
+      - '**/CODEOWNERS'
 
 jobs:
   sign:
