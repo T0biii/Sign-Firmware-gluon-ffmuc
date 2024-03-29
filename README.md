@@ -33,4 +33,4 @@ docker run --rm -it gluon:sign <privater_Schlüssel>
 
 ## Github Actions Worklow
 
-Wichtig ist das in dem Repository Einstellungen unter secrets/actions ein Sceret mit dem Privaten Schlüssel namens: `PRIVATEKEY` angelegt ist
+Wichtig ist das in dem Repository Einstellungen unter secrets/actions ein Sceret mit dem Privaten Schlüssel namens: `PRIVATEKEY` angelegt ist.
