@@ -16,9 +16,9 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v4
     - name: Build docker images
-      run: docker build -t local .
+      run: docker build -t gluon:sign .
     - name: Run Sign
-      run: docker run --rm -t local ${{ secrets.privateKey }}
+      run: docker run --rm -t gluon:sign ${{ secrets.privateKey }}
 
 
 
