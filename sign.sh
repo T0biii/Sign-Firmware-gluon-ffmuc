@@ -36,23 +36,21 @@ echo "$(print_branch_separator)"
 
 for branch in $branches
 do
-    url="https://firmware.ffmuc.net/$branch/sysupgrade/$branch.manifest"
-    head="$branch ($url)"
-    wget url >/dev/null 2>&1
+    wget "https://firmware.ffmuc.net/$branch/sysupgrade/$branch.manifest" >/dev/null 2>&1
     contrib/sigtest.sh $publickey $branch.manifest
     if [ $? -eq 0 ]; then
-        echo "$(print_branch_separator $head)"    
+        echo "$(print_branch_separator $branch)"    
         echo "Der Branch wurde bereits signiert"
         echo "$(print_branch_separator)"
     else
         contrib/sign.sh secret $branch.manifest >/dev/null 2>&1
         contrib/sigtest.sh $publickey $branch.manifest
         if [ $? -eq 0 ]; then
-            echo "$(print_branch_separator $head)"    
+            echo "$(print_branch_separator $branch)"    
             echo $(cat $branch.manifest | tail -1)
             echo "$(print_branch_separator)"   
         else
-            echo "$(print_branch_separator $head)"    
+            echo "$(print_branch_separator $branch)"    
             echo "Fehler beim Signen des Branches"
             echo "$(print_branch_separator)"
         fi
