@@ -21,4 +21,4 @@ jobs:
       id: sign
       run: docker run --rm -t gluon:sign ${{ secrets.privateKey }}
     - name: Summary
-      run: echo ${{ steps.tests.outputs.stdout }} >> $GITHUB_STEP_SUMMARY
+      run: echo ${{ steps.sign.outputs.stdout }} >> $GITHUB_STEP_SUMMARY
