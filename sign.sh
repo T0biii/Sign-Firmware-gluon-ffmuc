@@ -34,6 +34,8 @@ echo "$(print_branch_separator "Public-Key")"
 echo $publickey
 echo "$(print_branch_separator)" 
 
+echo "### Firmware Signed :rocket:" >> $GITHUB_STEP_SUMMARY
+
 for branch in $branches
 do
     wget "https://firmware.ffmuc.net/$branch/sysupgrade/$branch.manifest" >/dev/null 2>&1
@@ -41,7 +43,10 @@ do
     if [ $? -eq 0 ]; then
         echo "$(print_branch_separator $branch)"    
         echo "Der Branch wurde bereits signiert"
-        echo "$(print_branch_separator)"    
+        echo "$(print_branch_separator)"
+        echo "$(print_branch_separator $branch)" >> $GITHUB_STEP_SUMMARY    
+        echo "Der Branch wurde bereits signiert" >> $GITHUB_STEP_SUMMARY
+        echo "$(print_branch_separator)" >> $GITHUB_STEP_SUMMARY
     else
         contrib/sign.sh secret $branch.manifest >/dev/null 2>&1
         contrib/sigtest.sh $publickey $branch.manifest
@@ -49,10 +54,16 @@ do
             echo "$(print_branch_separator $branch)"    
             echo $(cat $branch.manifest | tail -1)
             echo "$(print_branch_separator)"    
+            echo "$(print_branch_separator $branch)"  >> $GITHUB_STEP_SUMMARY    
+            echo $(cat $branch.manifest | tail -1)  >> $GITHUB_STEP_SUMMARY
+            echo "$(print_branch_separator)"  >> $GITHUB_STEP_SUMMARY    
         else
             echo "$(print_branch_separator $branch)"    
             echo "Fehler beim Signen des Branches"
             echo "$(print_branch_separator)"
+            echo "$(print_branch_separator $branch)" >> $GITHUB_STEP_SUMMARY    
+            echo "Fehler beim Signen des Branches" >> $GITHUB_STEP_SUMMARY
+            echo "$(print_branch_separator)" >> $GITHUB_STEP_SUMMARY
         fi
     fi
 done
