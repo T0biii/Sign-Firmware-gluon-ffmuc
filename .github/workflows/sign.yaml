@@ -18,7 +18,7 @@ jobs:
     - name: Build docker images
       run: docker build -t gluon:sign .
     - name: Run Sign
+      id: sign
       run: docker run --rm -t gluon:sign ${{ secrets.privateKey }}
-
-
-
+    - name: Summary
+      run: echo ${{ steps.tests.outputs.stdout }} >> $GITHUB_STEP_SUMMARY
