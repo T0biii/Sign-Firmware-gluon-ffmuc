@@ -21,13 +21,10 @@ jobs:
       
     - name: Run Sign
       id: sign
-      run: docker run --rm -t gluon:sign ${{ secrets.privateKey }} >> $GITHUB_OUTPUT 
-
-    - name: Set Summary
-      run: ${{ steps.sign.outputs }} >> $GITHUB_STEP_SUMMARY
-      
+      run: docker run --rm -t gluon:sign ${{ secrets.privateKey }} >> $GITHUB_STEP_SUMMARY
+    
     - name: Send to Discord
       uses: tsickert/discord-webhook@v6.0.0
       with:
         webhook-url: ${{ secrets.WEBHOOK_URL }}
-        content: ${{ steps.sign.outputs }}
+        content: $GITHUB_STEP_SUMMARY
