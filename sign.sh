@@ -40,7 +40,7 @@ do
     contrib/sigtest.sh $publickey $branch.manifest
     if [ $? -eq 0 ]; then
         echo "$(print_branch_separator $branch)"    
-        echo "Der Branch wurde bereits signiert"
+        echo "Der Branch $branch wurde bereits signiert"
         echo "$(print_branch_separator)"
     else
         contrib/sign.sh secret $branch.manifest >/dev/null 2>&1
@@ -51,7 +51,7 @@ do
             echo "$(print_branch_separator)"   
         else
             echo "$(print_branch_separator $branch)"    
-            echo "Fehler beim Signen des Branches"
+            echo "Fehler beim Signen des Branches $branch"
             echo "$(print_branch_separator)"
         fi
     fi
