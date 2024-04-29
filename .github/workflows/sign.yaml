@@ -28,4 +28,4 @@ jobs:
       
     - name: Run Sign
       id: sign
-      run: docker run --rm -v /urls.txt:/urls.txt:ro -t gluon:sign ${{ secrets.privateKey }} >> $GITHUB_STEP_SUMMARY
+      run: docker run --rm -t gluon:sign ${{ secrets.privateKey }} >> $GITHUB_STEP_SUMMARY
