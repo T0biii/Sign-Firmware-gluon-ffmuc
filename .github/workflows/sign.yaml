@@ -1,5 +1,5 @@
 # sign.yml
-name: 'sign manifest stable/testing/experimental'
+name: 'sign manifest url'
 
 on:
   workflow_dispatch:
