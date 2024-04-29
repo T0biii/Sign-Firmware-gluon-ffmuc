@@ -8,6 +8,16 @@ on:
         description: "URL to sign manifest"
         required: true
         default: "https://firmware.ffmuc.net/raw/v2024.4.2-next/sysupgrade"
+      branch:
+        type: choice
+        description: "Branch to create update for"
+        required: true
+        default: "stable"
+        options: 
+        - stable
+        - testing
+        - experimental
+        - next
 
 jobs:
   sign:
@@ -19,6 +29,9 @@ jobs:
 
     - name: Set URL to file
       run: echo "${{ github.event.inputs.url }}" > url.txt
+    
+    - name: Set Branch to file
+      run: echo "${{ github.event.inputs.branch }}" > branch.txt
       
     - name: Build docker images
       run: docker build -t gluon:sign .
