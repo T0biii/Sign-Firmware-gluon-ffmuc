@@ -20,9 +20,6 @@ print_branch_separator() {
     echo "$separator"
 }
 
-#branches
-branches=$(cat "/branch.txt")
-
 # "First arg: private key"
 secret=$1
 echo $secret > secret
@@ -32,31 +29,31 @@ echo $publickey > publickey
 
 echo "$(print_branch_separator "Public-Key")"
 echo $publickey
-echo "$(print_branch_separator)" 
+echo "$(print_branch_separator)"
+
 url=$(cat "/url.txt")
-for branch in $branches
-do
-    manifesturl="$url/$branch.manifest"
-    wget "$manifesturl" >/dev/null 2>&1
-    contrib/sigtest.sh $publickey $branch.manifest
+wget "$url" >/dev/null 2>&1
+branch=$(echo "$url" | sed 's/.*\///')
+contrib/sigtest.sh $publickey $branch
+
+if [ $? -eq 0 ]; then
+    echo "$(print_branch_separator $branch)"
+    echo "URL: $manifesturl"
+    echo "Der Branch $branch wurde bereits signiert"
+    echo "$(print_branch_separator)"
+else
+    contrib/sign.sh secret $branch >/dev/null 2>&1
+    contrib/sigtest.sh $publickey $branch
     if [ $? -eq 0 ]; then
         echo "$(print_branch_separator $branch)"
         echo "URL: $manifesturl"
-        echo "Der Branch $branch wurde bereits signiert"
-        echo "$(print_branch_separator)"
+        echo $(cat $branch | tail -1)
+        echo "$(print_branch_separator)"   
     else
-        contrib/sign.sh secret $branch.manifest >/dev/null 2>&1
-        contrib/sigtest.sh $publickey $branch.manifest
-        if [ $? -eq 0 ]; then
-            echo "$(print_branch_separator $branch)"
-            echo "URL: $manifesturl"
-            echo $(cat $branch.manifest | tail -1)
-            echo "$(print_branch_separator)"   
-        else
-            echo "$(print_branch_separator $branch)"    
-            echo "URL: $manifesturl"
-            echo "Fehler beim Signen des Branches $branch"
-            echo "$(print_branch_separator)"
-        fi
+        echo "$(print_branch_separator $branch)"    
+        echo "URL: $manifesturl"
+        echo "Fehler beim Signen des Branches $branch"
+        echo "$(print_branch_separator)"
     fi
-done
+fi
+
