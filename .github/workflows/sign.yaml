@@ -19,6 +19,9 @@ jobs:
 
     - name: Set URL to file
       run: echo "${{ github.event.inputs.url }}" > url.txt
+
+    - name: ls
+      run: ls
       
     - name: Build docker images
       run: docker build -t gluon:sign .
