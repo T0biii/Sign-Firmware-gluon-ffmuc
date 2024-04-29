@@ -12,7 +12,7 @@ on:
         type: choice
         description: "Branch to create update for"
         required: true
-        default: "stable"
+        default: "next"
         options: 
         - stable
         - testing
