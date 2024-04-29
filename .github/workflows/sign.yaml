@@ -3,6 +3,11 @@ name: 'sign manifest'
 
 on:
   workflow_dispatch:
+    inputs:
+      url:
+        description: "URL to sign manifest"
+        required: true
+        default: "https://firmware.ffmuc.net/raw/v2024.4.2_v2022.5.6/sysupgrade/"
   push:
     paths-ignore:
       - '**.md'
@@ -15,6 +20,9 @@ jobs:
     steps:
     - name: Check out code
       uses: actions/checkout@v4
+
+    - name: Set URL to file
+      run: echo "${{ github.event.inputs.branch }}" > url.txt
       
     - name: Build docker images
       run: docker build -t gluon:sign .
