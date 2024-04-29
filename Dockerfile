@@ -6,4 +6,5 @@ RUN git clone https://github.com/freifunk-gluon/gluon/ && cd gluon && git checko
 
 COPY ./sign.sh /
 COPY ./url.txt /
+COPY ./branch.txt /
 ENTRYPOINT ["/sign.sh"]
