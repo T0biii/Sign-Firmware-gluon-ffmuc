@@ -5,5 +5,6 @@ ARG version=v2023.2.2
 RUN git clone https://github.com/freifunk-gluon/gluon/ && cd gluon && git checkout v2023.2.2 && cd .. && cp gluon/contrib . -R && rm gluon/ -R -f
 
 COPY ./sign.sh /
-ADD url.txt
+COPY url.txt /
+RUN ls
 ENTRYPOINT ["/sign.sh"]
