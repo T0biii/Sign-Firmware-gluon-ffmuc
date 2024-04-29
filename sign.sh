@@ -33,25 +33,28 @@ echo $publickey > publickey
 echo "$(print_branch_separator "Public-Key")"
 echo $publickey
 echo "$(print_branch_separator)" 
-ls
+url=$(cat "/url.txt")
 for branch in $branches
 do
-    url=$(cat "/url.txt")
-    wget "$url/$branch.manifest" >/dev/null 2>&1
+    manifesturl="$url/$branch.manifest"
+    wget "$manifesturl" >/dev/null 2>&1
     contrib/sigtest.sh $publickey $branch.manifest
     if [ $? -eq 0 ]; then
-        echo "$(print_branch_separator $branch)"    
+        echo "$(print_branch_separator $branch)"
+        echo "URL: $manifesturl"
         echo "Der Branch $branch wurde bereits signiert"
         echo "$(print_branch_separator)"
     else
         contrib/sign.sh secret $branch.manifest >/dev/null 2>&1
         contrib/sigtest.sh $publickey $branch.manifest
         if [ $? -eq 0 ]; then
-            echo "$(print_branch_separator $branch)"    
+            echo "$(print_branch_separator $branch)"
+            echo "URL: $manifesturl"
             echo $(cat $branch.manifest | tail -1)
             echo "$(print_branch_separator)"   
         else
             echo "$(print_branch_separator $branch)"    
+            echo "URL: $manifesturl"
             echo "Fehler beim Signen des Branches $branch"
             echo "$(print_branch_separator)"
         fi
