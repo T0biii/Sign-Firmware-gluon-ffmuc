@@ -38,7 +38,7 @@ contrib/sigtest.sh $publickey $branch
 
 if [ $? -eq 0 ]; then
     echo "$(print_branch_separator $branch)"
-    echo "URL: $manifesturl"
+    echo "URL: $url"
     echo "Der Branch $branch wurde bereits signiert"
     echo "$(print_branch_separator)"
 else
@@ -46,12 +46,12 @@ else
     contrib/sigtest.sh $publickey $branch
     if [ $? -eq 0 ]; then
         echo "$(print_branch_separator $branch)"
-        echo "URL: $manifesturl"
+        echo "URL: $url"
         echo $(cat $branch | tail -1)
         echo "$(print_branch_separator)"   
     else
         echo "$(print_branch_separator $branch)"    
-        echo "URL: $manifesturl"
+        echo "URL: $url"
         echo "Fehler beim Signen des Branches $branch"
         echo "$(print_branch_separator)"
     fi
