@@ -36,7 +36,8 @@ echo "$(print_branch_separator)"
 
 for branch in $branches
 do
-    wget "https://firmware.ffmuc.net/$branch/sysupgrade/$branch.manifest" >/dev/null 2>&1
+    url=$(cat "url.txt")
+    wget "$url/$branch.manifest" >/dev/null 2>&1
     contrib/sigtest.sh $publickey $branch.manifest
     if [ $? -eq 0 ]; then
         echo "$(print_branch_separator $branch)"    
