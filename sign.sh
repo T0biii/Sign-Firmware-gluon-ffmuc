@@ -33,7 +33,7 @@ echo $publickey > publickey
 echo "$(print_branch_separator "Public-Key")"
 echo $publickey
 echo "$(print_branch_separator)" 
-
+ls
 for branch in $branches
 do
     url=$(cat "url.txt")
