@@ -11,11 +11,16 @@ Dieses Repository automatisiert den Signiervorgang für das Manifest mithilfe vo
 
 Das Signieren des ffmuc Manifests erfolgt in mehreren Schritten:
 
-1. **GitHub Actions Workflow:** Ein GitHub Actions Workflow (`sign.yaml`) wird ausgelöst, wenn Änderungen am Code vorgenommen werden oder bei manueller Auslösung. Dieser Workflow führt den Signiervorgang aus.
-   
-2. **Docker-Build:** Ein Docker-Image wird erstellt, das die notwendige Umgebung für den Signiervorgang bereitstellt. Hierfür wird das Dockerfile im Repository verwendet.
+1. **GitHub Actions Workflow:** Ein GitHub Actions Workflow (`sign.yaml`) wird nur manuell ausgelöst, da eine URL zum manifest Ordner angegeben werden muss. Dieser Workflow führt den Signiervorgang aus.
+   - für stable/testing/experimental: https://firmware.ffmuc.net/raw/v2024.4.2_v2022.5.6/sysupgrade
+   - für next: https://firmware.ffmuc.net/raw/v2024.4.2-next/sysupgrade
+  
+   - ![image](https://github.com/T0biii/Sign-Firmware-gluon-ffmuc/assets/5702338/eabf64f9-7d5c-49d1-9c67-9ea76ef93ad6)
 
-3. **Signiervorgang:** Der Signiervorgang wird durch das Ausführen des `sign.sh` Skripts innerhalb des Docker-Containers durchgeführt. Dieses Skript signiert die ffmuc Manifestdateien für verschiedene Branches.
+   
+3. **Docker-Build:** Ein Docker-Image wird erstellt, das die notwendige Umgebung für den Signiervorgang bereitstellt. Hierfür wird das Dockerfile im Repository verwendet.
+
+4. **Signiervorgang:** Der Signiervorgang wird durch das Ausführen des `sign.sh` Skripts innerhalb des Docker-Containers durchgeführt. Dieses Skript signiert die ffmuc Manifestdateien für verschiedene Branches.
 
 ## Dateien
 
