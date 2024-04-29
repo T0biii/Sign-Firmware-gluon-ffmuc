@@ -7,7 +7,7 @@ on:
       url:
         description: "URL to sign manifest"
         required: true
-        default: "https://firmware.ffmuc.net/raw/v2024.4.2_v2022.5.6/sysupgrade/"
+        default: "https://firmware.ffmuc.net/raw/v2024.4.2_v2022.5.6/sysupgrade"
 
 jobs:
   sign:
