@@ -11,7 +11,7 @@ Dieses Repository automatisiert den Signiervorgang für das Manifest mithilfe vo
 
 Das Signieren des ffmuc Manifests erfolgt in mehreren Schritten:
 
-1. **GitHub Actions Workflow:** Ein GitHub Actions Workflow (`sign.yaml`) wird nur manuell ausgelöst, da eine URL zum manifest Ordner angegeben werden muss. Dieser Workflow führt den Signiervorgang aus.
+1. **GitHub Actions Workflow:** Ein GitHub Actions Workflow (`sign.yaml`) wird nur manuell ausgelöst, da eine URL zum manifest File angegeben werden muss. Dieser Workflow führt den Signiervorgang aus.
    z.B.
    - für stable: https://firmware.ffmuc.net/raw/v2024.4.2_v2022.5.6/sysupgrade/stable.manifest
    - für testing: https://firmware.ffmuc.net/raw/v2024.4.2_v2022.5.6/sysupgrade/testing.manifest
