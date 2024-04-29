@@ -20,8 +20,8 @@ jobs:
     - name: Set URL to file
       run: echo "${{ github.event.inputs.url }}" > url.txt
 
-    - name: ls
-      run: ls
+    - name: ls and cat url
+      run: ls && cat url.txt
       
     - name: Build docker images
       run: docker build -t gluon:sign .
