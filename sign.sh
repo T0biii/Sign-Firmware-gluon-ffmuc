@@ -36,7 +36,7 @@ echo "$(print_branch_separator)"
 ls
 for branch in $branches
 do
-    url=$(cat "url.txt")
+    url=$(cat "/url.txt")
     wget "$url/$branch.manifest" >/dev/null 2>&1
     contrib/sigtest.sh $publickey $branch.manifest
     if [ $? -eq 0 ]; then
