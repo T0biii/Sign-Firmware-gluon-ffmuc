@@ -15,7 +15,7 @@ on:
 
 jobs:
   sign:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     name: Sign ffmuc manifest
     steps:
     - name: Check out code
