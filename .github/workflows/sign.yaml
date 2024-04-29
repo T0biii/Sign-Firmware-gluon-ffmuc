@@ -8,10 +8,6 @@ on:
         description: "URL to sign manifest"
         required: true
         default: "https://firmware.ffmuc.net/raw/v2024.4.2_v2022.5.6/sysupgrade/"
-  push:
-    paths-ignore:
-      - '**.md'
-      - '**/CODEOWNERS'
 
 jobs:
   sign:
