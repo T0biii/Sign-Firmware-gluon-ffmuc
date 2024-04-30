@@ -13,10 +13,10 @@ Das Signieren des ffmuc Manifests erfolgt in mehreren Schritten:
 
 1. **GitHub Actions Workflow:** Ein GitHub Actions Workflow (`sign.yaml`) wird nur manuell ausgelöst, da eine URL zum manifest File angegeben werden muss. Dieser Workflow führt den Signiervorgang aus.
    z.B.
-   - für stable: https://firmware.ffmuc.net/raw/v2024.4.2_v2022.5.6/sysupgrade/stable.manifest
-   - für testing: https://firmware.ffmuc.net/raw/v2024.4.2_v2022.5.6/sysupgrade/testing.manifest
-   - für experimental: https://firmware.ffmuc.net/raw/v2024.4.2_v2022.5.6/sysupgrade/experimental.manifest
-   - für next: https://firmware.ffmuc.net/raw/v2024.4.2-next/sysupgrade/next.manifest
+   - für stable: https://firmware.ffmuc.net/v2024.4.2_v2022.5.6/sysupgrade/stable.manifest
+   - für testing: https://firmware.ffmuc.net/v2024.4.2_v2022.5.6/sysupgrade/testing.manifest
+   - für experimental: https://firmware.ffmuc.net/v2024.4.2_v2022.5.6/sysupgrade/experimental.manifest
+   - für next: https://firmware.ffmuc.net/v2024.4.2-next/sysupgrade/next.manifest
   
    - ![image](https://github.com/T0biii/Sign-Firmware-gluon-ffmuc/assets/5702338/eabf64f9-7d5c-49d1-9c67-9ea76ef93ad6)
 
